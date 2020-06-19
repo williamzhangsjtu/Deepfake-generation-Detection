@@ -1,0 +1,35 @@
+outputdir: FPP/ModelInFrame
+#train_label: dataset/F++/FPP.csv
+train_label: dataset/F++/train_FPP.csv
+dev_label: dataset/F++/dev_FPP.csv
+#dev_label: dataset/fake_videos/fake_videos/UADFV.csv
+train_data: dataset/F++/FPP.hdf5
+dev_data: dataset/F++/FPP.hdf5
+#dev_data: dataset/fake_videos/fake_videos/UADFV.hdf5
+n_class: 2
+model: ModelInFrame
+pretrain: True
+time_step: 1
+model_param:
+  bidirectional: True
+  num_layers: 3
+  hidden_size: 128
+optim: Adam
+lr: 0.004
+lr_scheduler: ReduceLROnPlateau
+threshold: 0.5
+scheduler_param:
+  mode: min
+  factor: 0.2
+  patience: 5
+  cooldown: 1
+  verbose: False
+  threshold: 0.001
+n_epoch: 50
+saveinterval: 5
+grad_clip: 10
+dataloader_param:
+  batch_size: 64
+  num_workers: 4
+  shuffle: True
+Loss: DoubleLoss
